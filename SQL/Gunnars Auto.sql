@@ -13,7 +13,7 @@ CREATE TABLE SalesPersons (
 	FirstName nvarchar(100) NOT NULL,
 	LastName nvarchar(100) NOT NULL,
 	Initials nchar(4) NOT NULL,
-	Sales bit
+	Hired bit NOT NULL
 )
 
 CREATE TABLE Cars (

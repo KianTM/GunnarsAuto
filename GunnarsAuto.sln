@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunnarsAuto.DALTest", "Gunn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunnarsAuto.BIZTest", "GunnarsAuto.BIZTest\GunnarsAuto.BIZTest.csproj", "{5C5B6E40-DF01-4FD2-B0D3-A071847B39C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{AF77F125-7F65-4A0F-A6D1-7287D5319DFE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Gunnars Auto.sql = ..\..\..\Desktop\Gunnars Auto.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

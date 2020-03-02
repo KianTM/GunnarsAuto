@@ -17,7 +17,7 @@ namespace GunnarsAuto.Entities
         public override string ToString()
         {
             string isHired = "nej";
-            if (Hired == true)
+            if (Hired)
             {
                 isHired = "ja";
             }

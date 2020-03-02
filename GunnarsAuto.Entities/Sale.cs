@@ -22,9 +22,22 @@ namespace GunnarsAuto.Entities
             }
         }
 
+        public Sale()
+        {
+
+        }
         public Sale(int saleId, bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
         {
             SaleId = saleId;
+            Sold = sold;
+            SalesPerson = salesPerson;
+            Car = car;
+            BuyPrice = buyPrice;
+            SalesPrice = salesPrice;
+        }
+
+        public Sale(bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
+        {            
             Sold = sold;
             SalesPerson = salesPerson;
             Car = car;

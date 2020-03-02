@@ -14,6 +14,27 @@ namespace GunnarsAuto.Entities
         public string Initials { get; set; }
         public bool Hired { get; set; }
 
+        public SalesPerson()
+        {
+
+        }
+        public SalesPerson(int salesPersonId, string firstName, string lastName, string initials, bool hired)
+        {
+            SalesPersonId = salesPersonId;
+            FirstName = firstName;
+            LastName = lastName;
+            Initials = initials;
+            Hired = hired;
+        }
+
+        public SalesPerson(string firstName, string lastName, string initials, bool hired)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Initials = initials;
+            Hired = hired;
+        }
+
         public override string ToString()
         {
             string isHired = "nej";

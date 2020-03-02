@@ -11,14 +11,10 @@ namespace GunnarsAuto.DAL
 {
     public class CarRepository
     {
-        public CarRepository()
-        {
-
-        }
 
         public List<Car> GetAll()
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAutoDB")))
             {
                 return connection.Query<Car>("GetAllCars").ToList();
             }
@@ -26,7 +22,7 @@ namespace GunnarsAuto.DAL
 
         public Car GetSingleCar(int carId)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAutoDB")))
             {
                 return connection.Query<Car>("GetCar @CarId", carId) as Car;
             }
@@ -34,7 +30,7 @@ namespace GunnarsAuto.DAL
 
         public void AddCar(Car car)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAutoDB")))
             {
                 connection.Execute("CreateCar @Brand, @Model, @Vin, @RegisterNumber, @IsUsed", car);
             }
@@ -42,15 +38,15 @@ namespace GunnarsAuto.DAL
 
         public void UpdateCar(Car car)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAutoDB")))
             {
-                connection.Execute("UpdateCar @CarId @Brand, @Model, @Vin, @RegisterNumber, @IsUsed", car);
+                connection.Execute("UpdateCar @CarId, @Brand, @Model, @Vin, @RegisterNumber, @IsUsed", car);
             }
         }
 
         public List<Car> GetCarsBasedOnSalesPersonId(int salesPersonId)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAutoDB")))
             {
                 return connection.Query<Car>("GetCarsBySalesPerson @SalesPersonId", salesPersonId).ToList();
             }

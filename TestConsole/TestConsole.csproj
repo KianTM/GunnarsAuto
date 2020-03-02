@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{686BEF61-0040-47CC-B1CB-FB1FE879867E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GunnarsAuto.DAL</RootNamespace>
-    <AssemblyName>GunnarsAuto.DAL</AssemblyName>
+    <ProjectGuid>{6594F8B8-1BDB-4432-848A-9830E0EEEA90}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TestConsole</RootNamespace>
+    <AssemblyName>TestConsole</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,11 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,21 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarRepository.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="CarRepositoryTest.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GunnarsAuto.Entities\GunnarsAuto.Entities.csproj">
-      <Project>{be27aa2e-72ea-4c75-9e45-bf9bc7ac42a6}</Project>
-      <Name>GunnarsAuto.Entities</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\GunnarsAuto.GUI\App.config">
-      <Link>App.config</Link>
-    </None>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\GunnarsAuto.DAL\GunnarsAuto.DAL.csproj">
+      <Project>{686BEF61-0040-47CC-B1CB-FB1FE879867E}</Project>
+      <Name>GunnarsAuto.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GunnarsAuto.Entities\GunnarsAuto.Entities.csproj">
+      <Project>{BE27AA2E-72EA-4C75-9E45-BF9BC7AC42A6}</Project>
+      <Name>GunnarsAuto.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

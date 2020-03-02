@@ -38,8 +38,7 @@ AS
 	
 	BEGIN
 
-	SELECT SalesPersonId, FirstName, LastName, Initials, Hired
-	FROM dbo.SalesPersons
+	SELECT * FROM dbo.SalesPersons
 	WHERE (SalesPersonId = @SalesPersonId)
 
 	END
@@ -124,10 +123,10 @@ GO
 
 IF OBJECT_ID('GetCar') IS NOT NULL
 BEGIN
-	DROP PROCEDURE dbo.crud_CarsSelect
+	DROP PROCEDURE GetCar
 END
 GO
-CREATE PROCEDURE dbo.crud_CarsSelect
+CREATE PROCEDURE GetCar
 		@CarId [int]
 AS
 	SET NOCOUNT ON
@@ -135,8 +134,7 @@ AS
 	
 	BEGIN
 
-	SELECT CarId, Brand, Model, Vin, RegisterNumber, IsUsed
-	FROM dbo.Cars
+	SELECT * FROM dbo.Cars
 	WHERE (CarId = @CarId)
 
 	END
@@ -234,8 +232,7 @@ AS
 	
 	BEGIN
 
-	SELECT SalesId, Sold, SalesPerson, Car, BuyPrice, SalesPrice
-	FROM dbo.Sales
+	SELECT * FROM dbo.Sales
 	WHERE (SalesId = @SalesId)
 
 	END
@@ -299,5 +296,48 @@ AS
 		UPDATE dbo.Sales
 		SET  Sold = @Sold, SalesPerson = @SalesPerson, Car = @Car, BuyPrice = @BuyPrice, SalesPrice = @SalesPrice
 		WHERE (SalesId = @SalesId)
+	END
+GO
+
+IF OBJECT_ID('GetCarsBySalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetCarsBySalesPerson
+END
+GO
+CREATE PROCEDURE GetCarsBySalesPerson
+	@SalesPersonId [int]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT c.*
+	FROM dbo.Sales	
+	JOIN dbo.Cars c ON dbo.Sales.Car = c.CarId
+	WHERE SalesPerson = @SalesPersonId
+
+	END
+GO
+
+IF OBJECT_ID('GetSalesBySalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSalesBySalesPerson
+END
+GO
+CREATE PROCEDURE GetSalesBySalesPerson
+	@SalesPersonId [int]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT *
+	FROM dbo.Sales	
+	WHERE SalesPerson = @SalesPersonId
+
 	END
 GO

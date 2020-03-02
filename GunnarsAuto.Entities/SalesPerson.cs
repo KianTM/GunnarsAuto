@@ -14,6 +14,10 @@ namespace GunnarsAuto.Entities
         public string Initials { get; set; }
         public bool Hired { get; set; }
 
+        public SalesPerson()
+        {
+
+        }
         public SalesPerson(int salesPersonId, string firstName, string lastName, string initials, bool hired)
         {
             SalesPersonId = salesPersonId;

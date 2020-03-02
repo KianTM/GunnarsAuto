@@ -31,5 +31,14 @@ namespace GunnarsAuto.Entities
             BuyPrice = buyPrice;
             SalesPrice = salesPrice;
         }
+
+        public Sale(bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
+        {            
+            Sold = sold;
+            SalesPerson = salesPerson;
+            Car = car;
+            BuyPrice = buyPrice;
+            SalesPrice = salesPrice;
+        }
     }
 }

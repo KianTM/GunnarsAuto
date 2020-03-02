@@ -25,6 +25,26 @@ AS
 	END
 GO
 
+IF OBJECT_ID('GetSalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSalesPerson
+END
+GO
+CREATE PROCEDURE GetSalesPerson
+		@SalesPersonId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT SalesPersonId, FirstName, LastName, Initials, Hired
+	FROM dbo.SalesPersons
+	WHERE (SalesPersonId = @SalesPersonId)
+
+	END
+GO
+
 IF OBJECT_ID('CreateSalesPerson') IS NOT NULL
 BEGIN
 	DROP PROCEDURE CreateSalesPerson
@@ -98,6 +118,26 @@ AS
 	BEGIN
 
 	SELECT * FROM dbo.Cars	
+
+	END
+GO
+
+IF OBJECT_ID('GetCar') IS NOT NULL
+BEGIN
+	DROP PROCEDURE dbo.crud_CarsSelect
+END
+GO
+CREATE PROCEDURE dbo.crud_CarsSelect
+		@CarId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT CarId, Brand, Model, Vin, RegisterNumber, IsUsed
+	FROM dbo.Cars
+	WHERE (CarId = @CarId)
 
 	END
 GO
@@ -177,6 +217,26 @@ AS
 	BEGIN
 
 	SELECT * FROM dbo.Sales	
+
+	END
+GO
+
+IF OBJECT_ID('GetSale') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSale
+END
+GO
+CREATE PROCEDURE GetSale
+		@SalesId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT SalesId, Sold, SalesPerson, Car, BuyPrice, SalesPrice
+	FROM dbo.Sales
+	WHERE (SalesId = @SalesId)
 
 	END
 GO

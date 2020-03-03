@@ -33,3 +33,15 @@ CREATE TABLE Sales (
 	BuyPrice money NOT NULL,
 	SalesPrice money
 )
+
+--CREATE TABLE Errors (
+--	ErrorId int NOT NULL PRIMARY KEY IDENTITY(1, 1),
+--	UserName nvarchar(100),
+--	ErrorNumber int,
+--	ErrorState int,
+--	ErrorSeverity  INT,
+--	ErrorLine int,
+--	ErrorProcedure nvarchar(MAX),
+--	ErrorMessage nvarchar(MAX),
+--	ErrorDateTime datetime2
+--)

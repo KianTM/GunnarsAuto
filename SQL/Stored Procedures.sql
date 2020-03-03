@@ -41,7 +41,7 @@ AS
 	SELECT * FROM dbo.SalesPersons
 	WHERE (SalesPersonId = @SalesPersonId)
 
-	END
+	END	
 GO
 
 IF OBJECT_ID('CreateSalesPerson') IS NOT NULL
@@ -341,3 +341,41 @@ AS
 
 	END
 GO
+
+--IF OBJECT_ID('Error') IS NOT NULL
+--BEGIN
+--	DROP PROCEDURE Error
+--END
+--GO
+--CREATE PROCEDURE Error
+--	@ErrorMessage [nvarchar](MAX)
+
+--AS 
+
+--	SET NOCOUNT ON
+--	SET XACT_ABORT ON
+
+--	BEGIN TRANSACTION
+
+--	INSERT INTO dbo.Errors
+--	(
+--		UserName, ErrorNumber, ErrorState, ErrorSeverity, ErrorLine, ErrorProcedure, ErrorMessage, ErrorDateTime
+--	)
+--	VALUES
+--	(
+--		SUSER_SNAME(),
+--		ERROR_NUMBER(),
+--		ERROR_STATE(),
+--		ERROR_SEVERITY(),
+--		ERROR_LINE(),
+--		ERROR_PROCEDURE(),
+--		@ErrorMessage,
+--		GETDATE()
+
+--	)
+--	SELECT *
+--	FROM dbo.Errors
+--	WHERE (ErrorId = SCOPE_IDENTITY())
+
+--	COMMIT
+--GO

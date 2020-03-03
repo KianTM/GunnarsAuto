@@ -31,5 +31,21 @@ namespace GunnarsAuto.DAL
                 return connection.Query<SalesPerson>("GetSalesPerson @CarId", salesPersonId) as Car;
             }
         }
+
+        public void AddSalesPerson(SalesPerson person)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            {
+                connection.Execute("CreateSalesPerson @FirstName, @LastName, @Initials, @Hired", person);
+            }
+        }
+
+        public void UpdateSalesPerson(SalesPerson person)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
+            {
+                connection.Execute("UpdateSalesPerson @SalesPersonId @FirstName, @LastName, @Initials, @Hired", person);
+            }
+        }
     }
 }

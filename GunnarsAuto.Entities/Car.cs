@@ -37,5 +37,15 @@ namespace GunnarsAuto.Entities
             RegistreNumber = registreNumber;
             IsUsed = isUsed;
         }
+
+        public override string ToString()
+        {
+            string brugt = "nej";
+            if (IsUsed)
+            {
+                brugt = "ja";
+            }
+            return $"Bil DB ID: {CarId}\nBil mærke og model: {Brand} {Model}\nVin: {Vin}\nRegisteringsnummer: {RegistreNumber}\nEr bil brugt: {brugt}";
+        }
     }
 }

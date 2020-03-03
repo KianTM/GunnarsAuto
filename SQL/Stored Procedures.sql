@@ -25,6 +25,25 @@ AS
 	END
 GO
 
+IF OBJECT_ID('GetSalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSalesPerson
+END
+GO
+CREATE PROCEDURE GetSalesPerson
+		@SalesPersonId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT * FROM dbo.SalesPersons
+	WHERE (SalesPersonId = @SalesPersonId)
+
+	END	
+GO
+
 IF OBJECT_ID('CreateSalesPerson') IS NOT NULL
 BEGIN
 	DROP PROCEDURE CreateSalesPerson
@@ -98,6 +117,25 @@ AS
 	BEGIN
 
 	SELECT * FROM dbo.Cars	
+
+	END
+GO
+
+IF OBJECT_ID('GetCar') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetCar
+END
+GO
+CREATE PROCEDURE GetCar
+		@CarId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT * FROM dbo.Cars
+	WHERE (CarId = @CarId)
 
 	END
 GO
@@ -181,6 +219,25 @@ AS
 	END
 GO
 
+IF OBJECT_ID('GetSale') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSale
+END
+GO
+CREATE PROCEDURE GetSale
+		@SalesId [int]
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT * FROM dbo.Sales
+	WHERE (SalesId = @SalesId)
+
+	END
+GO
+
 IF OBJECT_ID('CreateSales') IS NOT NULL
 BEGIN
 	DROP PROCEDURE CreateSales
@@ -241,3 +298,84 @@ AS
 		WHERE (SalesId = @SalesId)
 	END
 GO
+
+IF OBJECT_ID('GetCarsBySalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetCarsBySalesPerson
+END
+GO
+CREATE PROCEDURE GetCarsBySalesPerson
+	@SalesPersonId [int]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT c.*
+	FROM dbo.Sales	
+	JOIN dbo.Cars c ON dbo.Sales.Car = c.CarId
+	WHERE SalesPerson = @SalesPersonId
+
+	END
+GO
+
+IF OBJECT_ID('GetSalesBySalesPerson') IS NOT NULL
+BEGIN
+	DROP PROCEDURE GetSalesBySalesPerson
+END
+GO
+CREATE PROCEDURE GetSalesBySalesPerson
+	@SalesPersonId [int]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+	SELECT *
+	FROM dbo.Sales	
+	WHERE SalesPerson = @SalesPersonId
+
+	END
+GO
+
+--IF OBJECT_ID('Error') IS NOT NULL
+--BEGIN
+--	DROP PROCEDURE Error
+--END
+--GO
+--CREATE PROCEDURE Error
+--	@ErrorMessage [nvarchar](MAX)
+
+--AS 
+
+--	SET NOCOUNT ON
+--	SET XACT_ABORT ON
+
+--	BEGIN TRANSACTION
+
+--	INSERT INTO dbo.Errors
+--	(
+--		UserName, ErrorNumber, ErrorState, ErrorSeverity, ErrorLine, ErrorProcedure, ErrorMessage, ErrorDateTime
+--	)
+--	VALUES
+--	(
+--		SUSER_SNAME(),
+--		ERROR_NUMBER(),
+--		ERROR_STATE(),
+--		ERROR_SEVERITY(),
+--		ERROR_LINE(),
+--		ERROR_PROCEDURE(),
+--		@ErrorMessage,
+--		GETDATE()
+
+--	)
+--	SELECT *
+--	FROM dbo.Errors
+--	WHERE (ErrorId = SCOPE_IDENTITY())
+
+--	COMMIT
+--GO

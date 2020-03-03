@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="GunnarsAuto.GUI.Controls.CreateNewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:GunnarsAuto.GUI.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="400">
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+         <RowDefinition Height="1*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="20" />
+         <ColumnDefinition Width="3*" />
+         <ColumnDefinition Width="4*" />
+      </Grid.ColumnDefinitions>
+      <!--#region Labels-->
+      <Label Content="Ny bil:"
+             FontSize="24"
+             Grid.ColumnSpan="3"
+             Grid.RowSpan="7" />
+      <Label Grid.Column="1"
+             Grid.Row="1"
+             Content="Mærke"
+             FontSize="16" />
+      <Label Grid.Column="1"
+             Grid.Row="2"
+             Content="Model"
+             FontSize="16" />
+      <Label Grid.Column="1"
+             Grid.Row="3"
+             Content="Stelnummer"
+             FontSize="16" />
+      <Label Grid.Column="1"
+             Grid.Row="4"
+             Content="Registreringsnummer"
+             FontSize="16" />
+      <Label Grid.Column="1"
+             Grid.Row="5"
+             Content="Brugt bil?"
+             FontSize="16"
+             Grid.RowSpan="2" />
+      <!--#endregion-->
+      <!--#region Inputs-->
+      <TextBox x:Name="brandTextBox"
+               Grid.Row="1"
+               Grid.Column="2"
+               Height="30"
+               VerticalAlignment="Top"
+               Margin="10, 0" />
+      <TextBox x:Name="modelTextBox"
+               Grid.Row="2"
+               Grid.Column="2"
+               Height="30"
+               VerticalAlignment="Top"
+               Margin="10, 0" />
+      <TextBox x:Name="vinTextBox"
+               Grid.Row="3"
+               Grid.Column="2"
+               Height="30"
+               VerticalAlignment="Top"
+               Margin="10, 0" />
+      <TextBox x:Name="registryTextBox"
+               Grid.Row="4"
+               Grid.Column="2"
+               Height="30"
+               VerticalAlignment="Top"
+               Margin="10, 0" />
+      <CheckBox x:Name="usedCheckBox"
+                Grid.Row="5"
+                Grid.Column="2"
+                Margin="10, 0">
+         <CheckBox.LayoutTransform>
+            <ScaleTransform ScaleX="1.5"
+                            ScaleY="1.5" />
+         </CheckBox.LayoutTransform>
+      </CheckBox>
+      <Button x:Name="confirmButton"
+              Content="Færdig"
+              Grid.Row="6"
+              Grid.Column="2"
+              Margin="15"
+              FontSize="16"/>
+      <!--#endregion-->
+   </Grid>
+</UserControl>

@@ -4,9 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GunnarsAuto.GUI"
+        xmlns:uc="clr-namespace:GunnarsAuto.GUI.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow"
+        Height="450"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+   <Grid Margin="10">
+      <TabControl TabStripPlacement="Left">
+         <TabControl.Resources>
+            <Style TargetType="{x:Type TabItem}">
+               <Setter Property="HeaderTemplate">
+                  <Setter.Value>
+                     <DataTemplate>
+                        <ContentPresenter Content="{TemplateBinding Content}">
+                           <ContentPresenter.LayoutTransform>
+                              <RotateTransform Angle="270" />
+                           </ContentPresenter.LayoutTransform>
+                        </ContentPresenter>
+                     </DataTemplate>
+                  </Setter.Value>
+               </Setter>
+               <Setter Property="Padding"
+                       Value="5, 10" />
+               <Setter Property="FontSize"
+                       Value="16" />
+               <!--<Setter Property="FontFamily"
+                       Value="Century Gothic" />-->
+            </Style>
+         </TabControl.Resources>
+         <TabItem Header="Main">
+
+         </TabItem>
+         <TabItem Header="Salg">
+
+         </TabItem>
+         <TabItem Header="Opret og rediger">
+            <Grid>
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="1*" />
+                  <ColumnDefinition Width="1*" />
+               </Grid.ColumnDefinitions>
+               <uc:CreateNewView />
+               <uc:EditExistingView Grid.Column="1"/>
+            </Grid>
+         </TabItem>
+      </TabControl>
+   </Grid>
 </Window>

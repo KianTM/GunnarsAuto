@@ -86,10 +86,10 @@ GO
 CREATE PROCEDURE UpdateSalesPerson
 	(
 		@SalesPersonId [int],
-		@FirstName [nvarchar](100),
-		@LastName [nvarchar](100),
-		@Initials [nchar](4),
-		@Hired [bit]
+		@FirstName [nvarchar](100) = NULL,
+		@LastName [nvarchar](100) = NULL,
+		@Initials [nchar](4) NULL,
+		@Hired [bit] = NULL
 	)
 AS
 	SET NOCOUNT ON
@@ -97,7 +97,12 @@ AS
 	
 	BEGIN
 		UPDATE dbo.SalesPersons
-		SET  FirstName = @FirstName, LastName = @LastName, Initials = @Initials, Hired = @Hired
+		SET  
+			FirstName = ISNULL(@FirstName, FirstName),
+			LastName = ISNULL(@LastName, LastName),
+			Initials = ISNULL(@Initials, Initials),
+			Hired = ISNULL(@Hired, Hired)
+
 		WHERE (SalesPersonId = @SalesPersonId)
 	END
 GO
@@ -184,11 +189,11 @@ GO
 CREATE PROCEDURE UpdateCar
 	(
 		@CarId [int],
-		@Brand [nvarchar](100),
-		@Model [nvarchar](100),
-		@Vin [nchar](17),
-		@RegisterNumber [nvarchar](10),
-		@IsUsed [bit]
+		@Brand [nvarchar](100) = NULL,
+		@Model [nvarchar](100) = NULL,
+		@Vin [nchar](17) = NULL,
+		@RegisterNumber [nvarchar](10) = NULL,
+		@IsUsed [bit] = NULL
 	)
 AS
 	SET NOCOUNT ON
@@ -196,7 +201,13 @@ AS
 	
 	BEGIN
 		UPDATE dbo.Cars
-		SET  Brand = @Brand, Model = @Model, Vin = @Vin, RegisterNumber = @RegisterNumber, IsUsed = @IsUsed
+		SET  
+			Brand = ISNULL(@Brand, Brand), 
+			Model = ISNULL(@Model, Model), 
+			Vin = ISNULL(@Vin, Vin), 
+			RegisterNumber = ISNULL(@RegisterNumber, RegisterNumber), 
+			IsUsed = ISNULL(@IsUsed, IsUsed)
+
 		WHERE (CarId = @CarId)
 	END
 GO
@@ -282,11 +293,11 @@ GO
 CREATE PROCEDURE UpdateSales
 	(
 		@SalesId [int],
-		@Sold [bit],
-		@SalesPerson [int],
-		@Car [int],
-		@BuyPrice [money],
-		@SalesPrice [money]
+		@Sold [bit] = NULL,
+		@SalesPerson [int] = NULL,
+		@Car [int] = NULL,
+		@BuyPrice [money] = NULL,
+		@SalesPrice [money] = NULL
 	)
 AS
 	SET NOCOUNT ON
@@ -294,7 +305,13 @@ AS
 	
 	BEGIN
 		UPDATE dbo.Sales
-		SET  Sold = @Sold, SalesPerson = @SalesPerson, Car = @Car, BuyPrice = @BuyPrice, SalesPrice = @SalesPrice
+		SET  
+			Sold = ISNULL(@Sold, Sold), 
+			SalesPerson = ISNULL(@SalesPerson, SalesPerson), 
+			Car = ISNULL(@Car, Car), 
+			BuyPrice = ISNULL(@BuyPrice, BuyPrice), 
+			SalesPrice = ISNULL(@SalesPrice, SalesPrice)
+
 		WHERE (SalesId = @SalesId)
 	END
 GO

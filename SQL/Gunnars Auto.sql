@@ -31,7 +31,9 @@ CREATE TABLE Sales (
 	SalesPerson int NOT NULL FOREIGN KEY REFERENCES SalesPersons(SalesPersonId),
 	Car int NOT NULL FOREIGN KEY REFERENCES Cars(CarId),
 	BuyPrice money NOT NULL,
-	SalesPrice money
+	SalesPrice money,
+	BuyDate datetime2 NOT NULL DEFAULT GetDate(),
+	SalesDate datetime2
 )
 
 --CREATE TABLE Errors (

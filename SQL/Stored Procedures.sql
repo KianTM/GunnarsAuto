@@ -260,7 +260,9 @@ CREATE PROCEDURE CreateSales
 		@SalesPerson [int],
 		@Car [int],
 		@BuyPrice [money],
-		@SalesPrice [money]
+		@SalesPrice [money],
+		@BuyDate [datetime2],
+		@SaleDate [datetime2]
 	)
 AS
 	SET NOCOUNT ON
@@ -270,7 +272,7 @@ AS
 
 	INSERT INTO dbo.Sales
 	(
-		Sold, SalesPerson, Car, BuyPrice, SalesPrice
+		Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SaleDate
 	)
 	VALUES
 	(
@@ -279,7 +281,8 @@ AS
 		@Car,
 		@BuyPrice,
 		@SalesPrice
-
+		@BuyDate
+		@SaleDate
 	)	
 
 	END
@@ -297,7 +300,9 @@ CREATE PROCEDURE UpdateSales
 		@SalesPerson [int] = NULL,
 		@Car [int] = NULL,
 		@BuyPrice [money] = NULL,
-		@SalesPrice [money] = NULL
+		@SalesPrice [money] = NULL,
+		@BuyDate [datetime2] = NULL,
+		@SaleDate [datetime2] = NULL
 	)
 AS
 	SET NOCOUNT ON
@@ -310,7 +315,9 @@ AS
 			SalesPerson = ISNULL(@SalesPerson, SalesPerson), 
 			Car = ISNULL(@Car, Car), 
 			BuyPrice = ISNULL(@BuyPrice, BuyPrice), 
-			SalesPrice = ISNULL(@SalesPrice, SalesPrice)
+			SalesPrice = ISNULL(@SalesPrice, SalesPrice),
+			BuyDate = ISNULL(@BuyDate, BuyDate),
+			SaleDate =ISNULL(@SaleDate, SaleDate)
 
 		WHERE (SalesId = @SalesId)
 	END

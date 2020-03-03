@@ -28,7 +28,7 @@ namespace GunnarsAuto.DAL
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
             {
-                return connection.Query<SalesPerson>("GetSalesPerson @CarId", salesPersonId) as Car;
+                return connection.Query<SalesPerson>("GetSalesPerson @SalesPersonId", salesPersonId) as Car;
             }
         }
 

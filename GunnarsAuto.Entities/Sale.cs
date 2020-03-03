@@ -44,5 +44,15 @@ namespace GunnarsAuto.Entities
             BuyPrice = buyPrice;
             SalesPrice = salesPrice;
         }
+
+        public override string ToString()
+        {
+            string solgt = "nej";
+            if (Sold)
+            {
+                solgt = "ja";
+            }
+            return $"Salg DB Id: {SalesId}\nEr bilen solgt: {solgt}\nSælger: {SalesPerson}\nBil: {Car}\nIndkøbspris: {BuyPrice}\nSalgspris: {SalesPrice}";
+        }
     }
 }

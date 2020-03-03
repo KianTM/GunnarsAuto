@@ -14,6 +14,8 @@ namespace GunnarsAuto.Entities
         public Car Car { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal SalesPrice { get; set; }
+        public DateTime BuyDate { get; set; }
+        public DateTime SalesDate { get; set; }
         public decimal TransactionFee
         {
             get
@@ -34,6 +36,7 @@ namespace GunnarsAuto.Entities
             Car = car;
             BuyPrice = buyPrice;
             SalesPrice = salesPrice;
+            BuyDate = DateTime.Today;
         }
 
         public Sale(bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
@@ -43,6 +46,7 @@ namespace GunnarsAuto.Entities
             Car = car;
             BuyPrice = buyPrice;
             SalesPrice = salesPrice;
+            BuyDate = DateTime.Today;
         }
 
         public override string ToString()
@@ -52,7 +56,7 @@ namespace GunnarsAuto.Entities
             {
                 solgt = "ja";
             }
-            return $"Salg DB Id: {SalesId}\nEr bilen solgt: {solgt}\nSælger: {SalesPerson}\nBil: {Car}\nIndkøbspris: {BuyPrice}\nSalgspris: {SalesPrice}";
+            return $"Salg DB Id: {SalesId}\nEr bilen solgt: {solgt}\nSælger: {SalesPerson}\nBil: {Car}\nIndkøbspris: {BuyPrice}\nSalgspris: {SalesPrice}\nKøbt: {BuyDate}\nSolgt: {SalesDate}";
         }
     }
 }

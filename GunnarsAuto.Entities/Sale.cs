@@ -8,7 +8,7 @@ namespace GunnarsAuto.Entities
 {
     public class Sale
     {
-        public int SaleId { get; set; }
+        public int SalesId { get; set; }
         public bool Sold { get; set; }
         public SalesPerson SalesPerson { get; set; }
         public Car Car { get; set; }
@@ -26,9 +26,9 @@ namespace GunnarsAuto.Entities
         {
 
         }
-        public Sale(int saleId, bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
+        public Sale(int salesId, bool sold, SalesPerson salesPerson, Car car, decimal buyPrice, decimal salesPrice)
         {
-            SaleId = saleId;
+            SalesId = salesId;
             Sold = sold;
             SalesPerson = salesPerson;
             Car = car;

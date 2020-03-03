@@ -24,11 +24,11 @@ namespace GunnarsAuto.DAL
             }
         }
 
-        public Car GetSingleSalesPerson(int salesPersonId)
+        public SalesPerson GetSingleSalesPerson(int salesPersonId)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
             {
-                return connection.Query<SalesPerson>("GetSalesPerson @SalesPersonId", salesPersonId) as Car;
+                return connection.Query<SalesPerson>("GetSalesPerson @SalesPersonId", salesPersonId) as SalesPerson;
             }
         }
 

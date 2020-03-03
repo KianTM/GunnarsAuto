@@ -52,7 +52,7 @@ namespace GunnarsAuto.DAL
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
             {
-                return connection.Query<Sale>("GetSalesBySalesPersonId @SalesPersonId", salesPersonId).ToList();
+                return connection.Query<Sale>("GetSalesBySalesPerson @SalesPersonId", salesPersonId).ToList();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GunnarsAuto.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace GunnarsAuto.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public SalesPerson LoggedInPerson { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            LoggedInPerson = Shared.LoggedInPerson;
         }
     }
 }

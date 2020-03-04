@@ -29,9 +29,14 @@ namespace GunnarsAuto.GUI
         };
 
         private List<SalesPerson> hiredPeople = new List<SalesPerson>();
+
         public LoginWindow()
         {
             InitializeComponent();
+
+            loginButton.IsEnabled = false;
+            hiredPeople = GetHiredSalesPeople(salesPeople);
+            userComboBox.ItemsSource = hiredPeople;
         }
 
         private List<SalesPerson> GetHiredSalesPeople(List<SalesPerson> people)

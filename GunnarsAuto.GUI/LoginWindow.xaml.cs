@@ -57,8 +57,8 @@ namespace GunnarsAuto.GUI
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Temporary until a login system is properly implemented
-            MainWindow mainWindow = new MainWindow();
             Shared.LoggedInPerson = userComboBox.SelectedItem as SalesPerson;
+            MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }

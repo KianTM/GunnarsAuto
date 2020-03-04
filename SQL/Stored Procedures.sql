@@ -366,6 +366,78 @@ AS
 	END
 GO
 
+IF OBJECT_ID('TotalSalesToday') IS NOT NULL
+BEGIN
+	DROP PROCEDURE TotalSalesToday
+END
+GO
+CREATE PROCEDURE TotalSalesToday	
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.SalesPrice AS decimal(34, 2)) AS data  FROM dbo.Sales s
+			WHERE CONVERT(varchar(10), s.SalesDate, 102) = CONVERT(varchar(10), GETDATE(), 102)
+
+		) AS Total
+
+	END
+GO
+
+IF OBJECT_ID('TransactionsToday') IS NOT NULL
+BEGIN
+	DROP PROCEDURE TransactionsToday
+END
+GO
+CREATE PROCEDURE TransactionsToday	
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.BuyPrice AS decimal(34, 2)) AS data  FROM dbo.Sales s
+			WHERE CONVERT(varchar(10), s.BuyDate, 102) = CONVERT(varchar(10), GETDATE(), 102)
+
+		) AS Total
+
+	END
+GO
+
+IF OBJECT_ID('MonthToDateSales') IS NOT NULL
+BEGIN
+	DROP PROCEDURE MonthToDateSales
+END
+GO
+CREATE PROCEDURE MonthToDateSales
+	@ChosenMonth [datetime2]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.SalesPrice AS decimal(34, 2)) AS data  FROM dbo.Sales s
+			WHERE s.SalesDate BETWEEN '2016-01-20' AND GETDATE()
+
+
+		) AS Total
+
+	END
+GO
+
+
 --IF OBJECT_ID('Error') IS NOT NULL
 --BEGIN
 --	DROP PROCEDURE Error

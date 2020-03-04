@@ -91,3 +91,6 @@ insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesD
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 13, 7091, null, '2019-04-17', null);
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 19, 1491, null, '2016-03-16', null);
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (1, 5, 14, 4544, 8790, '2018-10-09', '2018-11-09');
+
+insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 4, 19, 721.14, 675.2, '2020-02-03', GETDATE());
+insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 13, 6826.93, 5921.97, '2020-02-20', GETDATE());

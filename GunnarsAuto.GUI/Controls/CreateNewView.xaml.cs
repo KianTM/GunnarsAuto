@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GunnarsAuto.Entities;
 
 namespace GunnarsAuto.GUI.Controls
 {
@@ -61,6 +62,14 @@ namespace GunnarsAuto.GUI.Controls
         {
             Regex regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$");
             e.Handled = !regex.IsMatch((sender as TextBox).Text.Insert((sender as TextBox).SelectionStart, e.Text));
+        }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            Car car = new Car(brandTextBox.Text, modelTextBox.Text, vinTextBox.Text, registryTextBox.Text, (bool)usedCheckBox.IsChecked);
+            Sale sale = new Sale() { BuyPrice = decimal.Parse(buyPriceTextBox.Text), Car = car, SalesPerson = Shared.LoggedInPerson };
+            biz.AddCar(car);
+            biz.AddSale(sale);
         }
     }
 }

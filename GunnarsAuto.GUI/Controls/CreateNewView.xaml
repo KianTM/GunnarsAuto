@@ -100,7 +100,8 @@
               Grid.Row="7"
               Grid.Column="2"
               Margin="15"
-              FontSize="16"/>
+              FontSize="16"
+              Click="confirmButton_Click" />
       <!--#endregion-->
    </Grid>
 </UserControl>

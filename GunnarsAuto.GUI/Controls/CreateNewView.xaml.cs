@@ -1,4 +1,5 @@
 ﻿using System;
+using GunnarsAuto.BIZ;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace GunnarsAuto.GUI.Controls
     /// </summary>
     public partial class CreateNewView : UserControl
     {
+        Biz biz = new Biz();
+
         public CreateNewView()
         {
             InitializeComponent();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GunnarsAuto.BIZ
 {
-    class Biz
+    public class Biz
     {
         CarRepository carRepository;
         // SalesPersonRepository salesPersonRepository;

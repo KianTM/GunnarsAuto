@@ -29,6 +29,34 @@ namespace GunnarsAuto.GUI.Controls
             InitializeComponent();
         }
 
+        private void CheckAllBoxRequirements()
+        {
+            if (string.IsNullOrEmpty(brandTextBox.Text) ||
+                string.IsNullOrEmpty(modelTextBox.Text) ||
+                string.IsNullOrEmpty(vinTextBox.Text) ||
+                string.IsNullOrEmpty(registryTextBox.Text) ||
+                string.IsNullOrEmpty(buyPriceTextBox.Text))
+            {
+                confirmButton.IsEnabled = false;
+            }
+            else
+            {
+                confirmButton.IsEnabled = true;
+            }
+
+            if (vinTextBox.Text.Length != 17)
+            {
+                confirmButton.IsEnabled = false;
+                vinTextBox.Background = Brushes.LightGray;
+            }
+            else
+            {
+                confirmButton.IsEnabled = true;
+                vinTextBox.Background = Brushes.White;
+            }
+
+        }
+
         private void buyPriceTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[.][0-9]+$|^[0-9]*[.]{0,1}[0-9]*$");

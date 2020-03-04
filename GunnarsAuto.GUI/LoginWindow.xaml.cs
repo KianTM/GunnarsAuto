@@ -34,6 +34,21 @@ namespace GunnarsAuto.GUI
             InitializeComponent();
         }
 
+        private List<SalesPerson> GetHiredSalesPeople(List<SalesPerson> people)
+        {
+            List<SalesPerson> output = new List<SalesPerson>();
+
+            foreach (SalesPerson sp in people)
+            {
+                if (sp.Hired)
+                {
+                    output.Add(sp);
+                }
+            }
+
+            return output;
+        }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Temporary until a login system is properly implemented

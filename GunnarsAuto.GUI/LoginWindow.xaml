@@ -20,7 +20,8 @@
                 Grid.Row="1"
                 Margin="20"
                 Height="30"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                SelectionChanged="UserComboBox_SelectionChanged">
       </ComboBox>
       <TextBox x:Name="loginTextBox"
                Grid.Row="1"

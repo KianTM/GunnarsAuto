@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GunnarsAuto.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,15 @@ namespace GunnarsAuto.GUI
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private List<SalesPerson> salesPeople = new List<SalesPerson>
+        {
+            new SalesPerson("User", "One", "USON", true),
+            new SalesPerson("Bob", "Thoo", "BOTH", true),
+            new SalesPerson("Ohn", "Haiyad", "OHHA", false)
+
+        };
+
+        private List<SalesPerson> hiredPeople = new List<SalesPerson>();
         public LoginWindow()
         {
             InitializeComponent();

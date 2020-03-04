@@ -24,7 +24,7 @@ namespace GunnarsAuto.GUI
             InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Temporary until a login system is properly implemented
             MainWindow mainWindow = new MainWindow();

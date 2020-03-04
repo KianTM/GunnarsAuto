@@ -33,7 +33,7 @@
               VerticalAlignment="Top"
               Margin="150, 110, 150, 0"
               Height="30"
-              Click="loginButton_Click" />
+              Click="LoginButton_Click" />
       <Label Content="© Gunnar Windenfeldt-Liljencrone Dannen-Skiold"
              Grid.Row="1"
              VerticalAlignment="Bottom"

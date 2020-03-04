@@ -84,7 +84,8 @@
                Grid.Column="2"
                Height="30"
                VerticalAlignment="Top"
-               Margin="10, 0" />
+               Margin="10, 0" 
+               PreviewTextInput="buyPriceTextBox_PreviewTextInput" />
       <CheckBox x:Name="usedCheckBox"
                 Grid.Row="6"
                 Grid.Column="2"

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace GunnarsAuto.BIZ
 {
-    class Biz
+    public class Biz
     {
         CarRepository carRepository;
-        // SalesPersonRepository salesPersonRepository;
+        SalesPersonRepository salesPersonRepository;
         public Biz()
         {
             carRepository = new CarRepository();
-            // salesPersonRepository = new SalesPersonRepository();
+            salesPersonRepository = new SalesPersonRepository();
         }
 
         #region Cars
@@ -46,24 +46,24 @@ namespace GunnarsAuto.BIZ
         #endregion
 
         #region SalesPerson
-        public SalesPerson GetSingleSalesPerson()
+        public SalesPerson GetSingleSalesPerson(int salesPersonId)
         {
-            throw new NotImplementedException();
+            return salesPersonRepository.GetSingleSalesPerson(salesPersonId);
         }
 
         public List<SalesPerson> GetAllSalesPersons()
         {
-            throw new NotImplementedException();
+            return salesPersonRepository.GetAll();
         }
 
         public void AddSalesPerson(SalesPerson person)
         {
-            throw new NotImplementedException();
+            salesPersonRepository.AddSalesPerson(person);
         }
 
         public void UpdateSalesPerson(SalesPerson person)
         {
-            throw new NotImplementedException();
+            salesPersonRepository.UpdateSalesPerson(person);
         }
         #endregion
 

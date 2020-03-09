@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GunnarsAuto.DAL
 {
-    class SalesRepository
+    public class SalesRepository
     {
         public SalesRepository()
         {

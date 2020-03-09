@@ -28,6 +28,8 @@ namespace GunnarsAuto.GUI.Controls
         public CreateNewView()
         {
             InitializeComponent();
+            confirmButton.IsEnabled = false;
+            vinTextBox.Background = Brushes.LightGray;
         }
 
         private void CheckAllBoxRequirements()
@@ -36,7 +38,8 @@ namespace GunnarsAuto.GUI.Controls
                 string.IsNullOrEmpty(modelTextBox.Text) ||
                 string.IsNullOrEmpty(vinTextBox.Text) ||
                 string.IsNullOrEmpty(registryTextBox.Text) ||
-                string.IsNullOrEmpty(buyPriceTextBox.Text))
+                string.IsNullOrEmpty(buyPriceTextBox.Text) ||
+                vinTextBox.Text.Length != 17)
             {
                 confirmButton.IsEnabled = false;
             }
@@ -47,12 +50,10 @@ namespace GunnarsAuto.GUI.Controls
 
             if (vinTextBox.Text.Length != 17)
             {
-                confirmButton.IsEnabled = false;
                 vinTextBox.Background = Brushes.LightGray;
             }
             else
             {
-                confirmButton.IsEnabled = true;
                 vinTextBox.Background = Brushes.White;
             }
 
@@ -70,6 +71,11 @@ namespace GunnarsAuto.GUI.Controls
             Sale sale = new Sale() { BuyPrice = decimal.Parse(buyPriceTextBox.Text), Car = car, SalesPerson = Shared.LoggedInPerson };
             biz.AddCar(car);
             biz.AddSale(sale);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckAllBoxRequirements();
         }
     }
 }

@@ -5,8 +5,10 @@ alter database GunnarsAutoDB set single_user with rollback IMMEDIATE
 DROP DATABASE GunnarsAutoDB
 END
 
-CREATE DATABASE GunnarsAutoDB
+CREATE DATABASE GunnarsAutoDB WITH TRUSTWORTHY ON
+GO
 USE GunnarsAutoDB
+GO
 
 CREATE TABLE SalesPersons (
 	SalesPersonId int NOT NULL PRIMARY KEY IDENTITY(1, 1),
@@ -35,21 +37,6 @@ CREATE TABLE Sales (
 	BuyDate datetime2 NOT NULL DEFAULT GetDate(),
 	SalesDate datetime2
 )
-
---CREATE TABLE Errors (
---	ErrorId int NOT NULL PRIMARY KEY IDENTITY(1, 1),
---	UserName nvarchar(100),
---	ErrorNumber int,
---	ErrorState int,
---	ErrorSeverity  INT,
---	ErrorLine int,
---	ErrorProcedure nvarchar(MAX),
---	ErrorMessage nvarchar(MAX),
---	ErrorDateTime datetime2
---)
-
-
-
 
 insert into Cars (Brand, Model, Vin, RegisterNumber, IsUsed) values ('Hyundai', 'Elantra', '5N1AT2MK6FC720196', 'JF44401', 0);
 insert into Cars (Brand, Model, Vin, RegisterNumber, IsUsed) values ('Mercedes-Benz', 'SL-Class', 'WAUJT64B84N020271', 'KH30979', 1);
@@ -91,3 +78,6 @@ insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesD
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 13, 7091, null, '2019-04-17', null);
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 19, 1491, null, '2016-03-16', null);
 insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (1, 5, 14, 4544, 8790, '2018-10-09', '2018-11-09');
+
+insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 4, 19, 7210, 6750, '2020-02-03', GETDATE());
+insert into Sales (Sold, SalesPerson, Car, BuyPrice, SalesPrice, BuyDate, SalesDate) values (0, 3, 13, 6826, 5921, '2020-02-20', GETDATE());

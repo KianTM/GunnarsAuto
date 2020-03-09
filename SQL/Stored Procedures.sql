@@ -156,13 +156,15 @@ CREATE PROCEDURE CreateCar
 		@Model [nvarchar](100),
 		@Vin [nchar](17),
 		@RegisterNumber [nvarchar](10),
-		@IsUsed [bit]
+		@IsUsed [bit],
+		@SalesPersonId [int],
+		@Price [money]
 	)
 AS
 	SET NOCOUNT ON
 	SET XACT_ABORT ON
 	
-	BEGIN
+	BEGIN TRANSACTION
 
 	INSERT INTO dbo.Cars
 	(
@@ -176,9 +178,19 @@ AS
 		@RegisterNumber,
 		@IsUsed
 
-	)	
+	)
 
-	END
+	DECLARE @LastInsertedId int;
+
+	SET @LastInsertedId = SCOPE_IDENTITY();
+
+	DECLARE @Today datetime2;
+	
+	SET @Today = GETDATE();
+	
+	EXEC CreateSales @Sold = 0, @SalesPerson = @SalesPersonId , @Car = @LastInsertedId, @BuyPrice = @Price, @SalesPrice = NULL, @BuyDate = @Today, @SalesDate = NULL;
+
+	COMMIT
 GO
 
 IF OBJECT_ID('UpdateCar') IS NOT NULL
@@ -366,40 +378,99 @@ AS
 	END
 GO
 
---IF OBJECT_ID('Error') IS NOT NULL
---BEGIN
---	DROP PROCEDURE Error
---END
---GO
---CREATE PROCEDURE Error
---	@ErrorMessage [nvarchar](MAX)
+IF OBJECT_ID('TotalSalesToday') IS NOT NULL
+BEGIN
+	DROP PROCEDURE TotalSalesToday
+END
+GO
+CREATE PROCEDURE TotalSalesToday	
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
 
---AS 
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.SalesPrice AS decimal(34, 0)) AS data  FROM dbo.Sales s
+			WHERE CONVERT(varchar(10), s.SalesDate, 102) = CONVERT(varchar(10), GETDATE(), 102)
 
---	SET NOCOUNT ON
---	SET XACT_ABORT ON
+		) AS Total
 
---	BEGIN TRANSACTION
+	END
+GO
 
---	INSERT INTO dbo.Errors
---	(
---		UserName, ErrorNumber, ErrorState, ErrorSeverity, ErrorLine, ErrorProcedure, ErrorMessage, ErrorDateTime
---	)
---	VALUES
---	(
---		SUSER_SNAME(),
---		ERROR_NUMBER(),
---		ERROR_STATE(),
---		ERROR_SEVERITY(),
---		ERROR_LINE(),
---		ERROR_PROCEDURE(),
---		@ErrorMessage,
---		GETDATE()
+IF OBJECT_ID('TransactionsToday') IS NOT NULL
+BEGIN
+	DROP PROCEDURE TransactionsToday
+END
+GO
+CREATE PROCEDURE TransactionsToday	
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
 
---	)
---	SELECT *
---	FROM dbo.Errors
---	WHERE (ErrorId = SCOPE_IDENTITY())
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.BuyPrice AS decimal(34, 0)) AS data  FROM dbo.Sales s
+			WHERE CONVERT(varchar(10), s.BuyDate, 102) = CONVERT(varchar(10), GETDATE(), 102)
 
---	COMMIT
---GO
+		) AS Total
+
+	END
+GO
+
+IF OBJECT_ID('MonthToDateSales') IS NOT NULL
+BEGIN
+	DROP PROCEDURE MonthToDateSales
+END
+GO
+CREATE PROCEDURE MonthToDateSales
+	@ChosenMonth [datetime2]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.SalesPrice AS decimal(34, 0)) AS data  FROM dbo.Sales s
+			WHERE (MONTH(s.SalesDate) BETWEEN MONTH(@ChosenMonth) AND MONTH(GETDATE()))
+			AND (YEAR(s.SalesDate) BETWEEN YEAR(@ChosenMonth) AND YEAR(GETDATE()))
+
+
+		) AS Total
+
+	END
+GO
+
+IF OBJECT_ID('YearToDateSales') IS NOT NULL
+BEGIN
+	DROP PROCEDURE YearToDateSales
+END
+GO
+CREATE PROCEDURE YearToDateSales
+	@ChosenYear [datetime2]
+	
+AS
+	SET NOCOUNT ON
+	SET XACT_ABORT ON
+	
+	BEGIN
+
+		SELECT SUM(data) AS Total FROM
+		(
+			SELECT CAST(s.SalesPrice AS decimal(34, 0)) AS data  FROM dbo.Sales s
+			WHERE (YEAR(s.SalesDate) BETWEEN YEAR(@ChosenYear) AND YEAR(GETDATE()))			
+
+
+		) AS Total
+
+	END
+GO

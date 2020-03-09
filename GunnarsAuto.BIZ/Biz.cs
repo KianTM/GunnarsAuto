@@ -12,10 +12,12 @@ namespace GunnarsAuto.BIZ
     {
         CarRepository carRepository;
         SalesPersonRepository salesPersonRepository;
+        SalesRepository salesRepository;
         public Biz()
         {
             carRepository = new CarRepository();
             salesPersonRepository = new SalesPersonRepository();
+            salesRepository = new SalesRepository();
         }
 
         #region Cars
@@ -70,27 +72,27 @@ namespace GunnarsAuto.BIZ
         #region Sales
         public Sale GetSingleSale(int salesId)
         {
-            throw new NotImplementedException();
+            return salesRepository.GetSingleSale(salesId);
         }
 
         public List<Sale> GetAllSales()
         {
-            throw new NotImplementedException();
+            return salesRepository.GetAll();
         }
 
         public void AddSale(Sale sale)
         {
-            throw new NotImplementedException();
+            salesRepository.AddSale(sale);
         }
 
         public void UpdateSale(Sale sale)
         {
-            throw new NotImplementedException();
+            salesRepository.UpdateSale(sale);
         }
 
         public List<Sale> GetSalesBasedOnSalesPerson(int salesPersonId)
         {
-            throw new NotImplementedException();
+            return salesRepository.GetSalesBasedOnSalesPersonId(salesPersonId);
         }
         #endregion
     }

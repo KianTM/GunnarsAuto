@@ -36,7 +36,7 @@ namespace GunnarsAuto.DAL
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(helper.CnnVal("GunnarsAuto")))
             {
-                connection.Execute("CreateSales @Sold, @SalesPerson, @Car, @BuyPrice, @SalesPrice", sale);
+                connection.Execute("CreateSales @Sold, @SalesPerson, @Car, @BuyPrice, @SalesPrice, @BuyDate, @SalesDate", new { Sold = sale.Sold, SalesPerson = 1, Car = sale.Car.CarId, BuyPrice = sale.BuyPrice, SalesPrice = sale.SalesPrice, BuyDate = DateTime.Today, SalesDate = DateTime.Today});
             }
         }
 
